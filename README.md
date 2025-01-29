@@ -1,2 +1,0 @@
-# .github
-Contains organisational README
