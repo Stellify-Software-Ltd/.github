@@ -1,10 +1,22 @@
 <p align="center"><a href="https://stellisoft.com" target="_blank"><img src="https://raw.githubusercontent.com/Stellify-Software-Ltd/stellify/refs/heads/main/public/stellify_logo.jpeg" width="200" alt="Stellify Logo"></a></p>
 
-## About Stellify
+## What is Stellify?
 
-Stellify is a system of representing code as JSON data objects which are stored in a database tables rather than in files. These data objects can be assembled back to the code you originally authored to be interpreted on a server or sent to a browser for execution.
+Stellify is a model of representing code as granular JSON data objects which are stored in a database tables rather than in files. These data objects can be assembled back to the code you originally authored to be stored as files, interpreted on a server or sent to a browser for execution.
 
-Here's an example of how we would store an HTML tag:
+## How Stellify Works
+
+In Stellify’s model, each JSON definition acts as an atomic entity because it represents a fundamental, indivisible unit of the application—whether it’s a keyword, variable, HTML element, or system setting. Since every component is structured in a one-to-one relationship with what it represents, Stellify provides a fully decomposed, structured view of an application that AI can work with more effectively.
+
+This atomic approach has several advantages:
+
+- Precision in AI Processing: Since each definition is atomic, AI can analyze, modify, or generate components without ambiguity.
+- Language-Agnostic Representation: The same atomic JSON definitions can be mapped to different languages or frameworks.
+- Self-Healing & Maintenance: Changes can be tracked and modified at the smallest functional unit, making updates more reliable.
+
+## Examples of JSON definitions
+
+Here's an example of how we would store an HTML tag using Stellify:
 
 ```
 {
@@ -24,8 +36,7 @@ Here's an example of how we would store an HTML tag:
     ]
 }
 ```
-
-And here's example of how we would store the token "for" in PHP: 
+Notice how in all of the examples the objects are "flat" any nesting that may be required (HTML uses nested tags for example) is achieved by referencing another object, here's example of how we would store the token "for" in PHP: 
 
 ```
 {
@@ -34,13 +45,13 @@ And here's example of how we would store the token "for" in PHP:
 }
 ```
 
-Here's how we would store a file:
+We don't treat code as nested based on the fact that code statements can be viewed as being nested in text editors. We take the same view of a statement as a compiler would, i.e. we store tokens against a line of code, sequentially. Those lines are in turn referenced by a method or a file. Here's how we would store a PHP file:
 
 ```
 {
     name: "SocialiteController",
     id: "d441b1e9-28b5-4144-8566-8b924394285a",
-    type: "controller",
+    type: "php84",
     extends: "71067e7b-7a61-43d0-97c5-1cb51c3ea262",
     methods: [
         "3e3ae425-4471-400e-ad36-dfeff487a85b"
@@ -51,9 +62,7 @@ Here's how we would store a file:
 }
 ```
 
-It's important to note that additional fields exist in the same row, these fields tend to contain data we would wish to use in queries, such as `date_created`. You can view the table structures we use at Stellisoft in this repository, under the `database/migrations` directory.
-
-Finally, here's an example of how we would store a variable in Javascript:
+Finally, here's an example of how we would store a variable using Javascript as the input language:
 
 ```
 {
@@ -62,14 +71,6 @@ Finally, here's an example of how we would store a variable in Javascript:
     id: "0b270c57-3d26-4d89-be5a-91ee11cc5a79"
 }
 ```
-Stellify abstracts and standardises and your ***entire*** web application in this way, making it possible to pull updates in from a central remote store that update ***entire*** applications, all whilst remaining mindful of how changes will impact other parts of your application. Introducing AI to the mix, it's not difficult to see how a simple shift to storing code in this way can really introduce some very powerful ways of maintaining, developing and deploying your web applications.
-
-Other benefits of this approach include:
-
-- Increased portability of code
-- Ease of delivery and backup
-- Ability to enforce granular editing permissions
-- The ability to override data in order to share the same code across applications and organizations
 
 ## What is stellisoft.com?
 
@@ -80,7 +81,7 @@ Other benefits of this approach include:
 - A Configuration Editor
 - A Bulk Application Editor
 
-Using the Config Editor, you can connect to your own database to store your application data (code) giving you complete autonomy.
+Using the Config Editor, you can connect to your own database in order to store your application data (definitions) giving you complete autonomy over your data and how it is used.
 
 ## Contributing
 
