@@ -132,7 +132,7 @@ Using the Config Editor, you can connect to your own database in order to store 
 
 ## Contributing
 
-Thank you for considering contributing to Stellify! The contribution guide can be found in the [Stellify documentation](https://stellisoft.com/documentation/contributions).
+Thank you for considering contributing to Stellify! The contribution guide can be found in the [Stellify documentation](https://stellisoft.com/stellify/documentation/contributions).
 
 ## Security Vulnerabilities
 
