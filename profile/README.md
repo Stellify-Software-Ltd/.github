@@ -132,7 +132,7 @@ User: "Add a login function"
 ## Links
 
 - **Website:** [stellisoft.com](https://stellisoft.com)
-- **Documentation:** [docs](https://docs.stellisoft.com)
+- **Documentation:** [docs](https://stellisoft.com/stellify/documentation)
 - **GitHub:** [Stellify-Software-Ltd](https://github.com/Stellify-Software-Ltd)
 
 ---
