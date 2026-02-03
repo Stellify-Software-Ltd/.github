@@ -1,156 +1,140 @@
-<p align="center"><a href="https://stellisoft.com" target="_blank"><img src="https://raw.githubusercontent.com/Stellify-Software-Ltd/stellify/refs/heads/main/public/stellify_logo.jpeg" width="200" alt="Stellify Logo"></a></p>
+# Stellify - AI-Native Code Composition Platform
+
+From the team at Stellify Software Ltd. comes Stellify, a web-based AI IDE that generates structured code, imports PHP & JS projects, and exports clean, production-ready codebases — so you can ship faster and own everything.
+
+---
 
 ## What is Stellify?
 
-"What if your entire application wasn’t just files containing code, but a dynamic, adaptable blueprint?" 
+Stellify is a convergence platform that fundamentally changes how AI writes code. Instead of generating code character-by-character as raw text, Stellify stores code as structured JSON in a database, enabling AI to compose applications from curated, proven building blocks.
 
-A system that can evolve and optimize itself, helping you to build faster? 
+Traditional AI coding tools regenerate the same solutions thousands of times—each with subtle variations, bugs, and inconsistencies. Stellify eliminates this by having AI reference and compose existing, validated code patterns.
 
-That’s the power of Stellify. 
+---
 
-Stellify stores code as dynamic JSON definitions. Each definition represents a granular unit of the application— whether it’s a keyword, variable, HTML element, or system setting. 
+## Key Features
 
-And that’s not all. We store these definitions in a database instead of a file meaning we get the benefits of structured data—querying, versioning and dynamic updates. 
+### Structured Code Storage
 
-So, what does this all mean in practice? 
+- **Code as structured data** — Methods, statements, and clauses stored as JSON, not text files
+- **Hash-based deduplication** — Identical code detected and reused automatically
+- **Granular editing** — Modify individual statements without parsing entire files
+- **AI-friendly format** — Structured data is easier for AI to understand and manipulate precisely
 
-It means that your entire application exists as a structured blueprint, rather than just a bunch of files. 
+### AI Integration via MCP
 
-And Stellify doesn’t just define interfaces and code.
+- 40+ MCP tools for seamless AI assistant integration
+- Works with Claude Desktop, Claude Code CLI, and any MCP-compatible client
+- AI operates on semantic units (methods, statements, elements) rather than raw text
+- Structured guardrails keep AI in check—only valid operations allowed, syntax validated at every step
 
-It defines everything. 
-Content. 
-Configuration. 
-System settings. 
-Even intent. 
+### Full-Stack Development
 
-So, what you end up with... is an entire blueprint for your application. 
+- **Laravel/PHP backend** — Controllers, models, middleware, services
+- **Vue.js frontend** — Single File Components with reactive state
+- **Visual Interface Builder** — 15+ element types for UI composition
+- **Code Editor** — VSCode-like experience for backend logic
 
-Now we understand a little about what Stellify is, let’s talk about AI + Stellify 
+### Unified Platform
 
- This is where things get really exciting. 
+Everything in one place:
 
-Because given a detailed blueprint, AI can create your entire application. 
+- Interface design
+- Backend code
+- Version control (Git-like branching without external tools)
+- Asset management
+- Export & deployment
+- AI integration
 
-And more than that... it can continuously refine and improve the result.
+### Zero Lock-In
 
-Imagine AI optimizing your technology stack as it detects bottlenecks, inefficiencies, or latency issues. 
+- **Export production-ready code** — Standard Laravel/Vue applications
+- **Deploy anywhere PHP runs**
+- **Full ownership of your code**
 
-It can recommend fixes— and adjust your blueprint accordingly. 
+---
 
-All because, and here’s the key: AI has knowledge of your entire application. 
+## How It Works
 
-With Stellify, AI understands: 
-It understands your intentions. 
-Your expectations. 
-The consequences of every change. 
-
-It knows if an action in one area... could impact performance, cost, security, or scalability elsewhere. 
-
-It doesn’t just react to problems. It can anticipate them— and recommend the best course of action. 
-
-That, my friends, is Stellify.  
-
-## How Stellify Works
-
-In Stellify’s model, each JSON definition acts as an atomic entity because it represents a fundamental, indivisible unit of the application—whether it’s a keyword, variable, HTML element, or system setting. Since every component is structured in a one-to-one relationship with what it represents, Stellify provides a fully decomposed, structured view of an application that AI can work with more effectively.
-
-This atomic approach has several advantages:
-
-- Precision in AI Processing: Since each definition is atomic, AI can analyze, modify, or generate components without ambiguity.
-- Language-Agnostic Representation: The same atomic JSON definitions can be mapped to different languages or frameworks.
-- Self-Healing & Maintenance: Changes can be tracked and modified at the smallest functional unit, making updates more reliable.
-
-## Examples of JSON definitions
-
-Here's an example of how we would store an HTML tag using Stellify:
+### Traditional AI Flow
 
 ```
-{
-    type: "layout",
-    tag: "div",
-    id: "fbc60d5e-e9a2-4c0e-8d09-9a2d196d94fc",
-    parent: "b00d4336-1898-4b10-b5f6-aa210ed97bc3",
-    children: [
-        "4efa4c77-5602-4372-8cf9-3419ada0cf6cm", 
-        "71067e7b-7a61-43d0-97c5-1cb51c3ea262"
-    ],
-    classes: [
-        "sm:mx-auto",
-        "sm:w-full",
-        "sm:max-w-sm",
-        "text-white"
-    ]
-}
-```
-Notice how in all of the examples the objects are "flat" any nesting that may be required (HTML uses nested tags for example) is achieved by referencing another object, here's example of how we would store the token "for" in PHP: 
-
-```
-{
-    type: "T_FOR",
-    id: "23951891-1b84-4fa9-9f53-fe99faabf08e"
-}
+User: "Add a login function"
+  → AI generates text: "function login($email..."
+  → Hope it's syntactically correct
+  → Hope it matches existing patterns
+  → Hope imports are handled
 ```
 
-We don't treat code as nested based on the fact that code statements can be viewed as being nested in text editors. We take the same view of a statement as a compiler would, i.e. we store tokens against a line of code, sequentially. Those lines are in turn referenced by a method or a file. Here's how we would store a PHP file:
+### Stellify AI Flow
 
 ```
-{
-    name: "SocialiteController",
-    id: "d441b1e9-28b5-4144-8566-8b924394285a",
-    type: "php84",
-    extends: "71067e7b-7a61-43d0-97c5-1cb51c3ea262",
-    methods: [
-        "3e3ae425-4471-400e-ad36-dfeff487a85b"
-    ],
-    includes: [
-        "6177293f-4c34-45d7-8e82-43291fd7c348"
-    ]
-}
+User: "Add a login function"
+  → AI calls create_method() with validated parameters
+  → System validates method signature
+  → AI calls add_method_body() with parsed code
+  → Dependencies auto-resolved
+  → Syntax validated at every step
+  → ✅ Working code guaranteed
 ```
 
-Finally, here's an example of how we would store a variable using Javascript as the input language:
+---
 
-```
-{
-    type: "variable",
-    name: "counter",
-    id: "0b270c57-3d26-4d89-be5a-91ee11cc5a79"
-}
-```
+## Why Stellify?
 
-## What is stellisoft.com?
+| Traditional Approach | Stellify Approach |
+|----------------------|-------------------|
+| AI guesses at structure | AI operates on semantic units |
+| Syntax errors possible | Syntax validated at every step |
+| Inconsistent patterns | Consistent structure enforced |
+| Missing imports/dependencies | Dependencies auto-resolved |
+| Hard to detect duplicates | Hash-based deduplication |
+| Scattered across tools | Unified platform |
 
-[stellisoft.com](https://stellisoft.com/) is the platform, namely the IDE, with which you author your applications using Stellify. It consists of:
+---
 
-- An Interface Builder
-- A Code Editor
-- A Configuration Editor
-- A Bulk Application Editor
+## Current Capabilities
 
-Using the Config Editor, you can connect to your own database in order to store your application data (definitions) giving you complete autonomy over your data and how it is used.
+- ✅ Build full-stack web applications (Laravel + Vue)
+- ✅ Visual interface builder with 15+ element types
+- ✅ Code editor for PHP methods and statements
+- ✅ MCP server for AI assistants
+- ✅ HTML → Elements conversion in single API call
+- ✅ Vue 3 SFC bundling via esbuild (~50ms builds)
+- ✅ Real-time AI-to-browser broadcasting via WebSockets
+- ✅ Execution benchmarking with timing, memory, and query metrics
+- ✅ Version control with branching and merging
+- ✅ 65+ global Laravel framework classes available
+- ✅ Code import from existing PHP/JavaScript files
 
-## Contributing
+---
 
-Thank you for considering contributing to Stellify! The contribution guide can be found in the [Stellify documentation](https://stellisoft.com/stellify/documentation/contributions).
+## Open Source Components
 
-## Security Vulnerabilities
+- **[stellify-mcp](https://github.com/Stellify-Software-Ltd/stellify-mcp)** — MCP server for AI integration
+- **[stellify-laravel](https://github.com/Stellify-Software-Ltd/stellify-laravel)** — Laravel project importer
+- **[stellify-bundler-service](https://github.com/Stellify-Software-Ltd/stellify-bundler-service)** — JavaScript bundling service
 
-If you discover a security vulnerability within stellify, please send an e-mail to Matthew Anderson via [matthew.anderson@stellisoft.com](mailto:matthew.anderson@stellisoft.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
+## Get Started
 
-The stellify framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+1. Install the MCP server:
+   ```bash
+   npm install -g @stellify/mcp-server
+   ```
+2. Configure with your Stellify API token
+3. Connect Claude Desktop or Claude Code
+4. Start building with AI
 
-## Learn more
+---
 
-If you would like to learn more about Stellify then you can read the comprehensive documentation on our website:
+## Links
 
-- [Configuring routes](https://stellisoft.com/documentation/routes).
-- [Building interfaces with HTML and CSS](https://stellisoft.com/documentation/interface-builder).
-- [Writing code](https://stellisoft.com/documentation/code-editor).
-- [Configuring your application](https://stellisoft.com/documentation/configuration-editor).
-- [Performing bulk operations](https://stellisoft.com/documentation/bulk-application-editor).
-- [Working with built-in version control](https://stellisoft.com/documentation/version-control).
-- [Supports popular web APIs](https://stellisoft.com/documentation/web-apis).
-- [Access pre-baked functionality](https://stellisoft.com/documentation/stellify-services).
+- **Website:** [stellisoft.com](https://stellisoft.com)
+- **Documentation:** [docs](https://docs.stellisoft.com)
+- **GitHub:** [Stellify-Software-Ltd](https://github.com/Stellify-Software-Ltd)
+
+---
+
+**Stellify** — where AI meets battle-tested code to build better software.
